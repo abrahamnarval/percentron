@@ -58,7 +58,7 @@ print(iris.info())
 #Histograma del atributo clase
 ax=plt.subplots(1,1,figsize=(10,8))
 sns.countplot('clas',data=iris)
-plt.title("clas")
+plt.title("numero de datos")
 plt.show()
 
 
@@ -84,7 +84,7 @@ plt.show()
 iris = iris.drop('Id',axis=1)
 box_data = iris #variable representing the data array
 box_target =iris.clas #variable representing the labels array
-sns.boxplot(data = box_data,width=0.5,fliersize=5)
+sns.boxplot(data = box_data,width=0.5,fliersize=6)
 #sns.set(rc={'figure.figsize':(2,15)})
 plt.show()
 
@@ -95,7 +95,10 @@ plt.show()
 
 
 #observando correlacion entre variables
-X = iris.iloc[:, 0:4]
+
+
+print (iris)
+X = iris.iloc[:, 0:6]
 f, ax = plt.subplots(figsize=(10, 8))
 corr = X.corr()
 print(corr)
@@ -121,14 +124,16 @@ plt.show()
 
 
 #Separando los datos en conjuntos de entrenaimiento y prueba
-X = iris.iloc[:, :-1].values
-y = iris.iloc[:, 4].values
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
+X = iris.iloc[:, :5].values
+y = iris.iloc[:, 5].values
+#print (X)
+#print (y)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30)
 '''
 
 #Como esta es una primera prueba prelimintar coloco esta instrucción para que nos me saque un warning
 #debido a que el modelo no alcanza a converger
-warnings.filterwarnings("ignore", category=ConvergenceWarning, module="sklearn")
+#warnings.filterwarnings("ignore", category=ConvergenceWarning, module="sklearn")
 
 #Entrenando un modelo de red neuronal MLP para clasificación
 #MLPClassifier permite configurar las capas ocultas del modelo, la instrucción de abajo indica que el modelo tendrá
